@@ -1,0 +1,43 @@
+.main{
+    margin: auto;
+    width: 25%;
+    height: 12%;
+    border: 5px solid green;
+    padding: 25px;
+}
+
+#form {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#sorteadoInfo {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:large;
+    margin-top: 5px;
+}
+
+#botao {
+    width: 30%;
+    height: 30%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top: 20px;
+}
+
+label {
+    font-weight:bold;
+    margin:auto;
+}
+
+input {
+    margin:auto;
+}
+
+body {
+    background-color: lightblue;
+}
