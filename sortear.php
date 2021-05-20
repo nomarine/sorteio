@@ -1,14 +1,14 @@
 <?php 
 
     $_SESSION["participantes"] = [
-        array("David", ""),
-        array("Diogo", ""),
-        array("Rafael", "")
+        array("codigo"=>"", "nome"=>"David", "sorteado"=>""),
+        array("codigo"=>"", "nome"=>"Diogo", "sorteado"=>""),
+        array("codigo"=>"", "nome"=>"Rafael", "sorteado"=>"")
     ];
     $_SESSION["sorteados"]=[];
-    
+
     foreach($_SESSION["participantes"] as $index => $participante){
-        $_SESSION["sorteados"][$index]=$_SESSION["participantes"][$index][0];
+        $_SESSION["sorteados"][$index]=$_SESSION["participantes"][$index]["nome"];
     }
     shuffle($_SESSION["sorteados"]);
     
@@ -20,10 +20,12 @@
         $_SESSION["sorteados"][$lastindex] = $_SESSION["sorteados"][$lastindex-1];
         $_SESSION["sorteados"][$lastindex-1] = $ultimonome;
     }
-    
     //Tratar valores iguais
     foreach($_SESSION["participantes"] as $index => $participante){
-        if($participante[0] == $_SESSION["sorteados"][$index]){
+        if($index == count($_SESSION["participantes"])-1){
+            break;
+        }
+        if($participante["nome"] == $_SESSION["sorteados"][$index]){
             $proximonome = $_SESSION["sorteados"][$index];
             $_SESSION["sorteados"][$index] = $_SESSION["sorteados"][$index+1]; 
             $_SESSION["sorteados"][$index+1] = $proximonome;
@@ -32,8 +34,7 @@
     
     //Vincular sorteados à matriz de participantes
     for($i=0;$i<count($_SESSION["participantes"]);$i++) {
-        $_SESSION["participantes"][$i][1] = $_SESSION["sorteados"][$i];
+        $_SESSION["participantes"][$i]["sorteado"] = $_SESSION["sorteados"][$i];
     }
     
-    ?>
 ?>
