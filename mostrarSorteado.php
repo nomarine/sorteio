@@ -3,5 +3,5 @@
 
     $participante = $_GET['q'];
 
-    echo "<p> Você tirou " . $_SESSION["participantes"][$participante]["sorteado"] . "</p>";
+    echo "<p> Cód " .  $_SESSION["participantes"][$participante]["codigo"] . " - Você tirou " . ucwords($_SESSION["participantes"][$participante]["sorteado"]) . "</p>";
 ?>

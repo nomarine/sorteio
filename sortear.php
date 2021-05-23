@@ -1,13 +1,27 @@
 <?php 
+    function gerarCodigo($caracteres, $tamanho = 16) {
+        $total_caracteres = strlen($caracteres);
+        $codigo = '';
+        for($i = 0; $i < $tamanho; $i++) {
+            $caracter = $caracteres[mt_rand(0, $total_caracteres - 1)];
+            $codigo .= $caracter;
+        }
+    
+        return $codigo;
+    }
 
     $_SESSION["participantes"] = [
-        array("codigo"=>"", "nome"=>"David", "sorteado"=>""),
-        array("codigo"=>"", "nome"=>"Diogo", "sorteado"=>""),
-        array("codigo"=>"", "nome"=>"Rafael", "sorteado"=>"")
+        array("codigo"=>"", "nome"=>"david luiz", "sorteado"=>""),
+        array("codigo"=>"", "nome"=>"diogo", "sorteado"=>""),
+        array("codigo"=>"", "nome"=>"rafael", "sorteado"=>"")
     ];
+
     $_SESSION["sorteados"]=[];
+    
+    $caracteres = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     foreach($_SESSION["participantes"] as $index => $participante){
+        $_SESSION["participantes"][$index]["codigo"] = gerarCodigo($caracteres, 5);
         $_SESSION["sorteados"][$index]=$_SESSION["participantes"][$index]["nome"];
     }
     shuffle($_SESSION["sorteados"]);

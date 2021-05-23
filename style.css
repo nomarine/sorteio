@@ -21,11 +21,10 @@
 }
 
 #botao {
-    width: 30%;
+    width: 50%;
     height: 30%;
     display:flex;
     justify-content:center;
-    align-items:center;
     margin-top: 20px;
 }
 

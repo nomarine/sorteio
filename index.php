@@ -16,7 +16,7 @@ include("sortear.php");
 <div class="main">
     <div id="form">
        <label>Digite seu código:</label>
-       <input type=text onchange="" id="sorteio"></input>
+       <input type=text id="sorteio"></input>
     </div>
     <input id="botao" type="button" value="Mostrar sorteado" onclick="mostrarSorteado(sorteio.value)">
     <div id="sorteadoInfo"></div>
