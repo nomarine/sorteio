@@ -1,6 +1,6 @@
 <?php 
 
-session_start();
+include("conexao_db.php");
 include("sortear.php");
 
 ?>

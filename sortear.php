@@ -15,11 +15,11 @@
         array("codigo"=>"", "nome"=>"diogo", "sorteado"=>""),
         array("codigo"=>"", "nome"=>"rafael", "sorteado"=>"")
     ];
-
     $_SESSION["sorteados"]=[];
     
     $caracteres = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+    //Atribui a cada registro um código e popula os sorteados com os nomes dos participantes;
     foreach($_SESSION["participantes"] as $index => $participante){
         $_SESSION["participantes"][$index]["codigo"] = gerarCodigo($caracteres, 5);
         $_SESSION["sorteados"][$index]=$_SESSION["participantes"][$index]["nome"];

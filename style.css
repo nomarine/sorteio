@@ -21,7 +21,7 @@
 }
 
 #botao {
-    width: 50%;
+    width: 40%;
     height: 30%;
     display:flex;
     justify-content:center;
@@ -29,6 +29,7 @@
 }
 
 label {
+    width: 40%;
     font-weight:bold;
     margin:auto;
 }
