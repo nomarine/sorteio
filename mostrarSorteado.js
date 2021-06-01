@@ -10,6 +10,6 @@ function mostrarSorteado(str){
             document.getElementById("sorteadoInfo").innerHTML = this.responseText;
         }
     };
-  xhttp.open("GET", "mostrarSorteado.php?q="+str, true);
+  xhttp.open("GET", "mostrarSorteado.php?codigo="+str, true);
   xhttp.send();
 }

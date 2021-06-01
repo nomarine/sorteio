@@ -1,26 +1,23 @@
 <?php 
-    function gerarCodigo($caracteres, $tamanho = 16) {
-        $total_caracteres = strlen($caracteres);
-        $codigo = '';
-        for($i = 0; $i < $tamanho; $i++) {
-            $caracter = $caracteres[mt_rand(0, $total_caracteres - 1)];
-            $codigo .= $caracter;
-        }
-    
-        return $codigo;
-    }
+    require('conexao_db.php');
 
-    $_SESSION["participantes"] = [
-        array("codigo"=>"", "nome"=>"david luiz", "sorteado"=>""),
-        array("codigo"=>"", "nome"=>"diogo", "sorteado"=>""),
-        array("codigo"=>"", "nome"=>"rafael", "sorteado"=>"")
-    ];
-    $_SESSION["sorteados"]=[];
+    $sql_select = "SELECT nome FROM participantes ORDER BY RAND();";
+    $resultado = $conexao->query($sql_select);
     
-    $caracteres = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $sql_insert = "";
 
     //Atribui a cada registro um código e popula os sorteados com os nomes dos participantes;
-    foreach($_SESSION["participantes"] as $index => $participante){
+    while($linha = $resultado->fetch_assoc()) {
+        $sql_insert .= "INSERT INTO sorteados (nome) VALUES ('" . $linha["nome"] . "'); ";
+    }
+
+    if($conexao->multi_query($sql_insert) === TRUE) {
+        echo "Deu!";
+    } else {
+        echo "Error<br>" . $sql_insert . "<br>" . $conexao->error;
+    }
+    
+/*     foreach($_SESSION["participantes"] as $index => $participante){
         $_SESSION["participantes"][$index]["codigo"] = gerarCodigo($caracteres, 5);
         $_SESSION["sorteados"][$index]=$_SESSION["participantes"][$index]["nome"];
     }
@@ -49,6 +46,6 @@
     //Vincular sorteados à matriz de participantes
     for($i=0;$i<count($_SESSION["participantes"]);$i++) {
         $_SESSION["participantes"][$i]["sorteado"] = $_SESSION["sorteados"][$i];
-    }
-    
+    } */
+    $conexao->close();
 ?>

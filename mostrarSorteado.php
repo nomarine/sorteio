@@ -1,7 +1,11 @@
 <?php
-    session_start();
+    require('conexao_db.php');
 
-    $participante = $_GET['q'];
+    $codigo = $_GET['codigo'];
 
-    echo "<p> Cód " .  $_SESSION["participantes"][$participante]["codigo"] . " - Você tirou " . ucwords($_SESSION["participantes"][$participante]["sorteado"]) . "</p>";
+    $sql_select = "SELECT nome, codigo FROM participantes WHERE codigo = '" . $codigo . "'";
+    $resultado = $conexao->query($sql_select);
+    $participante = $resultado->fetch_assoc();
+
+    echo "<p>" .  $participante["nome"] . " - Você tirou " . ucwords($participante["nome"]) . "</p>";
 ?>

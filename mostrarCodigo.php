@@ -1,11 +1,13 @@
 <?php
-    session_start();
+    require('conexao_db.php');
 
     $participante = $_GET['nome'];
 
-    $colunanome = array_column($_SESSION["participantes"], "nome");
+    $sql_select = "SELECT codigo FROM participantes WHERE  nome = '" . $participante . "'";
+    $resultado = $conexao->query($sql_select);
+    $codigo = $resultado->fetch_assoc();
 
-    $index = array_search($participante, $colunanome);
+    echo "<p> Seu código é " . $codigo["codigo"] . "</p>";
 
-    echo "<p> Seu código é " . $_SESSION["participantes"][$index]["codigo"] . "</p>";
+    $conexao->close();
 ?>

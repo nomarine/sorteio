@@ -6,10 +6,10 @@
     $senha = "";
     $db = "sorteio";
 
-    $_SESSION["conexao"] = new mysqli($servidor, $usuario, $senha, $db);
+    $conexao = new mysqli($servidor, $usuario, $senha, $db);
 
-    if ($_SESSION["conexao"]->connect_error) {
-        die("Falha de conexão: " . $_SESSION["conexao"]->connect_error);
+    if ($conexao->connect_error) {
+        die("Falha de conexão: " . $conexao->connect_error);
     }
 
 ?>
