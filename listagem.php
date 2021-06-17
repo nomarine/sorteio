@@ -15,6 +15,9 @@
 <title>Listagem de Participantes</title>
 </head>
 <body>
+<?php
+    include('navbar.html');
+?>
 <div class="main">
     <table>
         <tr>

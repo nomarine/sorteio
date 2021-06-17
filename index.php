@@ -1,7 +1,6 @@
 <?php 
 
 include("conexao_db.php");
-include("sortear.php");
 
 ?>
 
@@ -13,6 +12,9 @@ include("sortear.php");
 <title>Sorteio de Nomes</title>
 </head>
 <body>
+<?php
+    include('navbar.html');
+?>
 <div class="main">
     <div id="form">
        <label>Digite seu código:</label>

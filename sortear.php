@@ -1,20 +1,29 @@
 <?php 
+    include('debugging.php');
     require('conexao_db.php');
 
-    $sql_select = "SELECT nome FROM participantes ORDER BY RAND();";
+    $sql_select = "SELECT * FROM sorteados";
     $resultado = $conexao->query($sql_select);
+    $registro = $resultado->fetch_assoc();
     
-    $sql_insert = "";
+    if(empty($registro['id'])){
+        console_log('Tabela vazia');
+        $sql_select = "SELECT nome FROM participantes ORDER BY RAND();";
+        $resultado = $conexao->query($sql_select);
+        $sql_insert = "";
 
-    //Atribui a cada registro um código e popula os sorteados com os nomes dos participantes;
-    while($linha = $resultado->fetch_assoc()) {
-        $sql_insert .= "INSERT INTO sorteados (nome) VALUES ('" . $linha["nome"] . "'); ";
-    }
+        //Atribui a cada registro um código e popula os sorteados com os nomes dos participantes;
+        while($linha = $resultado->fetch_assoc()) {
+            $sql_insert .= "INSERT INTO sorteados (nome) VALUES ('" . $linha["nome"] . "'); ";
+        }
 
-    if($conexao->multi_query($sql_insert) === TRUE) {
-        echo "Deu!";
+        if($conexao->multi_query($sql_insert) === TRUE) {
+            console_log('Deu!');
+        } else {
+            echo "Error<br>" . $sql_insert . "<br>" . $conexao->error;
+        }
     } else {
-        echo "Error<br>" . $sql_insert . "<br>" . $conexao->error;
+        console_log('Tabela com conteúdo');
     }
     
 /*     foreach($_SESSION["participantes"] as $index => $participante){

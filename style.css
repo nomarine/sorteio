@@ -41,3 +41,14 @@ input {
 body {
     background-color: lightblue;
 }
+
+li {
+    display: inline;
+    margin-right: 10px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
