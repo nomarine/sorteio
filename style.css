@@ -52,3 +52,7 @@ ul {
     margin: 0;
     padding: 0;
 }
+
+.navbar {
+    padding-bottom: 10px;
+}
